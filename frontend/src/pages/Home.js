@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import WorkoutDetails from "../components/WorkoutDetails"
+import WorkoutForm from "../components/WorkoutForm"
 
 const Home = () => {
     // It is null because if the res.ok is data itll be set to true else itll be false.
@@ -30,6 +31,8 @@ const Home = () => {
                     <WorkoutDetails key={ workout._id } workout={ workout } />
                 ))}
             </div>
+
+            <WorkoutForm />
         </div>
 
      );
