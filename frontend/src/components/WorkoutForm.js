@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { WorkoutsContext } from "../context/WorkoutContext";
 const WorkoutForm = () => {
+    const { dispatch } = useContext(WorkoutsContext);
     // We need to create a state for every property of the new 
     // workout object. We also need to create a state for the
     // error message.
-
     const [title, setTitle] = useState('');
     const [reps, setReps] = useState('');
     const [sets, setSets] = useState('');
     const [weight, setWeight] = useState('');
     const [error, setError] = useState(null);
-
-
+    const [add, setAdd] = useState(null);
     const handleSubmit = async (e) => {
         e.preventDefault(); // So the page doesnt refresh
         // Create a workout object
@@ -24,9 +24,7 @@ const WorkoutForm = () => {
             // Convert the workout object to a JSON string
             body: JSON.stringify(workout) 
         });
-        
         const json = await res.json();
-
         if(!Response.ok){
             setError(json.error);
         }
@@ -35,9 +33,10 @@ const WorkoutForm = () => {
             setReps('');
             setSets('');
             setWeight('');
-            
             setError(null);
             console.log('Workout added!');
+            setAdd(true);
+            dispatch({ type: 'ADD_WORKOUT', payload: json });
         }
     }
     return (  
@@ -83,5 +82,4 @@ const WorkoutForm = () => {
         </form>
     );
 }
- 
 export default WorkoutForm;
