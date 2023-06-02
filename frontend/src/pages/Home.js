@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
+import SearchForWorkout from "../components/SearchForWorkout";
 
 const Home = () => {
-    // It is null because if the res.ok is data itll be set to true else itll be false.
     const [workouts, setWorkouts] = useState(null);
-
     useEffect(() => {
         const fetchWorkouts = async () => {
             const res = await fetch('/api/workouts');
@@ -17,22 +16,22 @@ const Home = () => {
             }
             
         };
-    
         fetchWorkouts();
-    }, []);
+    });
     
-    console.log('Workouts:', workouts); // Add this console log
-    
-
+    if (!workouts) {
+      return <div>Loading...</div>;
+    }
     return ( 
         <div className="home">
-            <div className="workouts">
-                {workouts && workouts.map((workout) => (
-                    <WorkoutDetails key={ workout._id } workout={ workout } />
-                ))}
-            </div>
+          <SearchForWorkout />
+          
+          { workouts.length >= 0 && workouts.map((workout) => (
+            <WorkoutDetails key={workout._id} workout={workout} />
+          ))}
 
-            <WorkoutForm />
+
+          <WorkoutForm />
         </div>
 
      );

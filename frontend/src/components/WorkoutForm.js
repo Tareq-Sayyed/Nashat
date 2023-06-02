@@ -10,12 +10,12 @@ const WorkoutForm = () => {
     const [sets, setSets] = useState('');
     const [weight, setWeight] = useState('');
     const [error, setError] = useState(null);
-    const [add, setAdd] = useState(null);
+    
     const handleSubmit = async (e) => {
-        e.preventDefault(); // So the page doesnt refresh
+        // So the page doesnt refresh
+        e.preventDefault(); 
         // Create a workout object
         const workout = { title, reps, sets, weight }; 
-        console.log(workout);
         // Send the workout object to the server
         const res = await fetch('/api/workouts', {
             method: 'POST',
@@ -24,18 +24,18 @@ const WorkoutForm = () => {
             // Convert the workout object to a JSON string
             body: JSON.stringify(workout) 
         });
+
         const json = await res.json();
-        if(!Response.ok){
+        if(!res.ok){
             setError(json.error);
         }
-        if(Response.ok){
+        if(res.ok){
             setTitle('');
             setReps('');
             setSets('');
             setWeight('');
             setError(null);
             console.log('Workout added!');
-            setAdd(true);
             dispatch({ type: 'ADD_WORKOUT', payload: json });
         }
     }
