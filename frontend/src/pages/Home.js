@@ -6,7 +6,7 @@ const Home = () => {
   const [workouts, setWorkouts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState("");
-
+  
   const fetchWorkouts = async () => {
     const res = await fetch("/api/workouts");
     const data = await res.json();

@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useLogin } from '../hooks/useLogin';
 const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {login, error, isLoading} = useLogin();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:4000/api/auth/signup', {});
+        await login(email, password);
     }
 
 
@@ -32,7 +34,10 @@ const LogIn = () => {
                 required 
             />
 
-            <button>Log In</button>
+            <button disabled = { isLoading }>Log In</button>
+            {
+                error && <p className='error'>{ error }</p>
+            }
         </form>
     );
 }
