@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const workoutRoutes = require('./routes/workouts');
-
+const userRoutes = require('./routes/user');
 
 // Create express app.
 const app = express();
@@ -16,6 +16,7 @@ app.use((req, res, next) =>{
 
 // Route handlers.
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/user', userRoutes);
 
 // Connect to database.
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -23,8 +24,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     // Listen to requests
     app.listen(process.env.PORT, () => {
         console.log('Connected to database & listening on port 4000')
-    });
-    
+    });  
 })
 .catch((err) => console.log(err));
 
