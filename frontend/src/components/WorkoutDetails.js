@@ -1,8 +1,6 @@
-// import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-const WorkoutDetails = ({ workout }) => {
-    // const { dispatch } = useWorkoutsContext();
 
+const WorkoutDetails = ({ workout }) => {
     // A function to delete the workout.
     const handleClick = async () => {
         const response = await fetch(`/api/workouts/${workout._id}`, {
@@ -11,7 +9,6 @@ const WorkoutDetails = ({ workout }) => {
         const json = await response.json();
         if (response.ok) {
             console.log('Deleted Workout:', json);
-            // dispatch({ type: 'DELETE_WORKOUT', payload: json });
             window.location.reload();
         }
         else {

@@ -1,10 +1,6 @@
-import { useState, useContext } from 'react';
-import { WorkoutsContext } from "../context/WorkoutContext";
+import { useState } from 'react';
+
 const WorkoutForm = () => {
-    const { dispatch } = useContext(WorkoutsContext);
-    // We need to create a state for every property of the new 
-    // workout object. We also need to create a state for the
-    // error message.
     const [title, setTitle] = useState('');
     const [reps, setReps] = useState('');
     const [sets, setSets] = useState('');
@@ -36,7 +32,6 @@ const WorkoutForm = () => {
             setWeight('');
             setError(null);
             console.log('Workout added!');
-            dispatch({ type: 'ADD_WORKOUT', payload: json });
         }
     }
     return (  

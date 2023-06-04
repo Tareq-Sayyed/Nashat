@@ -60,7 +60,7 @@ const SearchForWorkout = () => {
                     <p>
                         <strong>Reps:</strong> {workout.reps}
                     </p>
-                    <span onClick={ handleClick } >Delete</span>
+                    <span className = "material-symbols-outlined" onClick={ handleClick } >delete</span>
                 </div>
             )}
         </form>
