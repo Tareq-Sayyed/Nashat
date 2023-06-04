@@ -10,7 +10,18 @@ const createToken = (_id) => {
 
 // Login user.
 const loginUser = async (req, res) => {
-    res.json({msg: 'login user'})
+    const { email, password } = req.body;
+    try{
+        const user = await User.login(email, password);
+        // Create token.
+        const token = createToken(user._id);
+        // Set cookie.
+        // res.cookie('jwt', token, {httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000});
+        res.status(200).json({email, token});
+    }
+    catch(error){
+        res.status(400).json({msg: error.message});
+    }
 }
 
 // Signup user.
