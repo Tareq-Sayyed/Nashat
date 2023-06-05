@@ -107,6 +107,11 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+button:active{
+  scale: 0.92;
+  transition: 0.3s ease-in-out;
+}
+
 
 /* navbar */
 nav {
@@ -125,6 +130,13 @@ nav button{
   cursor: pointer;
   font-family: "Poppins";
   font-size: 1em;
+}
+.Links{
+  display: flex;
+  flex-direction: row;
+}
+.NavEmail{
+  margin-right: 8px;
 }
 
 

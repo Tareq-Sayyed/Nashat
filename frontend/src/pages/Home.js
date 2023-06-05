@@ -20,11 +20,11 @@ const Home = () => {
   useEffect(() => {
       const timer = setTimeout(() => {
         fetchWorkouts();
-      }, 4000);
+      }, 2000);
       return () => clearTimeout(timer); 
     }, []);
   
-    // This useEffect is used to fetch the workouts from the database and update the workouts state
+  // This useEffect is used to fetch the workouts from the database and update the workouts state
   useEffect(() => {
     console.log(workouts);
   }, [workouts]);
@@ -247,10 +247,16 @@ const Home = () => {
         <button>Search Workout</button>
         <button onClick={ getAllWorkouts }>See all workouts</button>
       </form>
-      {workouts &&
+
+      {
+        workouts && workouts.length > 0 ? (
         workouts.map((workout) => (
           <WorkoutDetails key={workout._id} workout={workout} />
-        ))}
+        ))
+        ) : (<div className="error"><p>No workouts found.</p></div>)
+      }
+      
+      
       <WorkoutForm fetchworkout={fetchWorkouts} />
     </div>
   );

@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react'
+import { useEffect } from 'react'
 
 export const AuthContext = createContext()
 
@@ -17,6 +18,16 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, { 
     user: null
   })
+
+  // This useEffect is to check whether there is an existing token 
+  // in the local storage so it directly keeps the user logged in
+  // and they wont have to log in again.  
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user })
+    }
+  }, []);
 
   console.log('AuthContext state:', state)
   

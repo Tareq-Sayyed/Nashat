@@ -10,7 +10,6 @@ const LogIn = () => {
         await login(email, password);
     }
 
-
     return ( 
         <form className='login' onSubmit={ handleSubmit }>
             <h3>Log In</h3>
