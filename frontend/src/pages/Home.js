@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState("");
+
+  const { user } = useAuthContext();
   
   const fetchWorkouts = async () => {
-    const res = await fetch("/api/workouts");
+    const res = await fetch("/api/workouts", {
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
+    });
     const data = await res.json();
     if (res.ok) {
       setWorkouts(data.workouts);
@@ -19,15 +26,20 @@ const Home = () => {
 
   useEffect(() => {
       const timer = setTimeout(() => {
-        fetchWorkouts();
+        if(user){
+          fetchWorkouts();
+        }
       }, 2000);
       return () => clearTimeout(timer); 
-    }, []);
+    }, [user]);
   
   // This useEffect is used to fetch the workouts from the database and update the workouts state
   useEffect(() => {
+    if(user){
+      fetchWorkouts();
+    }
     console.log(workouts);
-  }, [workouts]);
+  }, [workouts, user]);
 
   if (isLoading) {
     return (
