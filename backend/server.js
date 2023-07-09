@@ -16,6 +16,9 @@ app.use((req, res, next) =>{
 });
 const corsOptions = {
     origin: 'https://nashat.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }
 app.use(cors(corsOptions));
 
