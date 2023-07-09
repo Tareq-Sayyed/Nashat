@@ -11,7 +11,7 @@ const Home = () => {
   const { user } = useAuthContext();
   
   const fetchWorkouts = async () => {
-    const res = await fetch("/api/workouts", {
+    const res = await fetch("https://nashat.onrender.com/api/workouts", {
       headers: {
         'Authorization': `Bearer ${user.token}`
       }

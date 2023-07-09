@@ -18,7 +18,7 @@ const WorkoutForm = () => {
         // Create a workout object
         const workout = { title, reps, sets, weight }; 
         // Send the workout object to the server
-        const res = await fetch('/api/workouts', {
+        const res = await fetch('https://nashat.onrender.com/api/workouts', {
             method: 'POST',
             // To tell the server that we are sending JSON data
             headers: { "Content-Type": "application/json",

@@ -15,8 +15,8 @@ app.use((req, res, next) =>{
 });
 
 // Route handlers.
-app.use('/api/workouts', workoutRoutes);
-app.use('/api/user', userRoutes);
+app.use('https://nashat.onrender.com/api/workouts', workoutRoutes);
+app.use('https://nashat.onrender.com/api/user', userRoutes);
 
 // Connect to database.
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })

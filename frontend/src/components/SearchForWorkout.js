@@ -7,7 +7,7 @@ const SearchForWorkout = () => {
     // Method to handle the search of a workout
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch('/api/workouts/', {
+        const res = await fetch('https://nashat.onrender.com/api/workouts/', {
             method: 'GET',
         });
 
@@ -28,7 +28,7 @@ const SearchForWorkout = () => {
     };
     // Method to handle the delete of a workout { Just like in WorkoutDetails.js }
     const handleClick = async () => {
-        const response = await fetch(`/api/workouts/${workout._id}`, {
+        const response = await fetch(`https://nashat.onrender.com/api/workouts/${workout._id}`, {
             method: 'DELETE'
         });
 
