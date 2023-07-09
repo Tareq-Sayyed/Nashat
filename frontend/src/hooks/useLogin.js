@@ -13,7 +13,8 @@ export const useLogin = () => {
     const response = await fetch('https://nashat.onrender.com/api/user/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, password }),
+      content: 'text/plain'
     })
     const json = await response.json()
 
